@@ -2125,19 +2125,21 @@ The result is a prototype that supports both prospect personas without forcing k
 
 The final prototype is deployed as a production Vite application on Vercel and was smoke-tested after deployment.
 
+Vercel is used only as the deployment layer. The assignment source code and technical documentation remain in the `algolia-opentable-discovery` repository.
+
 Deployment flow:
 
-Git repository
-      ↓
+```text
+algolia-opentable-discovery
+        ↓
+production Vite build
+        ↓
 Vercel
-      ↓
-npm install
-      ↓
-npm run build
-      ↓
-dist/
-      ↓
-Public HTTPS application
+        ↓
+public HTTPS application
+        ↓
+Algolia Search API
+```
 
 The deployed browser application receives only:
 

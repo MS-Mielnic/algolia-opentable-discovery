@@ -146,7 +146,7 @@ restaurants_info.csv ──┘
 
 The production demo is deployed on Vercel:
 
-**Live demo:** https://YOUR-VERCEL-URL.vercel.app
+**Live demo:** https://algolia-opentable-deployment-ifwxs2nrq-msm-se-test.vercel.app/
 
 The deployed Vite application uses only the browser-safe Algolia configuration:
 
@@ -181,6 +181,7 @@ ALGOLIA_INDEX_NAME=
 
 VITE_ALGOLIA_APP_ID=
 VITE_ALGOLIA_SEARCH_API_KEY=
+VITE_ALGOLIA_INDEX_NAME=
 ```
 
 Use a **search-only API key** for the browser-facing `VITE_` variable. Do not expose the write key to the client application.
