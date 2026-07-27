@@ -1,0 +1,111 @@
+{
+  "source": {
+    "jsonRecords": 5000,
+    "csvRecords": 5000
+  },
+  "join": {
+    "jsonUniqueObjectIDs": 5000,
+    "csvUniqueObjectIDs": 5000,
+    "matchedRecords": 5000,
+    "missingFromCsv": 0,
+    "missingFromJson": 0
+  },
+  "cleaning": {
+    "cityCanonicalizationRules": 5,
+    "cityCanonicalizations": 7,
+    "cityCanonicalizationCounts": {
+      "LaFayette -> Lafayette": 2,
+      "Los Ranchos De Albuquerque -> Los Ranchos de Albuquerque": 1,
+      "Mcallen -> McAllen": 2,
+      "Mcminnville -> McMinnville": 1,
+      "Mcmurray -> McMurray": 1
+    },
+    "stateCorrections": 2
+  },
+  "validation": {
+    "validRecords": 5000,
+    "uniqueObjectIDs": 5000,
+    "invalidRecords": 0
+  },
+  "observations": {
+    "phoneBaseNumberConflicts": 95,
+    "phoneComparisonsUnavailable": 0,
+    "priceRepresentationConflicts": 220,
+    "unexpectedNumericPriceValues": [],
+    "repeatedRestaurantNames": 21
+  },
+  "categories": {
+    "foodTypes": 114,
+    "neighborhoods": 1062,
+    "priceRanges": 3,
+    "diningStyles": 4
+  },
+  "samples": {
+    "phoneConflictObjectIDs": [
+      "100042",
+      "101353",
+      "10252",
+      "104701",
+      "107422",
+      "109186",
+      "109642",
+      "110971",
+      "113530",
+      "116473"
+    ],
+    "priceConflictObjectIDs": [
+      "10042",
+      "102925",
+      "102931",
+      "103105",
+      "103513",
+      "104584",
+      "106159",
+      "106585",
+      "106633",
+      "106792"
+    ],
+    "repeatedRestaurantNames": [
+      {
+        "name": "Cocotte",
+        "count": 2
+      },
+      {
+        "name": "Elements",
+        "count": 2
+      },
+      {
+        "name": "Grange",
+        "count": 2
+      },
+      {
+        "name": "Il Forno",
+        "count": 2
+      },
+      {
+        "name": "Il Palio",
+        "count": 2
+      },
+      {
+        "name": "La Bella Vita",
+        "count": 2
+      },
+      {
+        "name": "La Provence",
+        "count": 2
+      },
+      {
+        "name": "Latitude 41",
+        "count": 2
+      },
+      {
+        "name": "Mateo",
+        "count": 2
+      },
+      {
+        "name": "Pappas Bros. Steakhouse",
+        "count": 2
+      }
+    ]
+  }
+}
