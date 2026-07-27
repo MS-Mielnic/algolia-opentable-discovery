@@ -46,6 +46,12 @@ const attributesForFaceting = [
   'dining_style',
   'filterOnly(stars_count)',
   'filterOnly(price_tier)',
+  'filterOnly(city)',
+  'filterOnly(state)',
+  'filterOnly(area)',
+  'filterOnly(neighborhood)',
+  'filterOnly(reviews_count)',
+  'payment_options',
 ];
 
 const customRanking = [

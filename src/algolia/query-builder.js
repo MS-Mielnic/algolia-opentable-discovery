@@ -128,7 +128,13 @@ function addGeoParameters(searchParams, location) {
   }
 }
 
-export function buildSearchRequest(state, { omitGeo = false } = {}) {
+export function buildSearchRequest(
+  state,
+  {
+    omitGeo = false,
+    useAllSearchableAttributes = false,
+  } = {},
+) {
   const facetFilters = buildFacetFilters(state.filters, state.location)
   const numericFilters = buildNumericFilters(state.filters, state.discoveryMode)
 
@@ -136,9 +142,15 @@ export function buildSearchRequest(state, { omitGeo = false } = {}) {
     query: state.query.trim(),
     hitsPerPage: 12,
     attributesToRetrieve: ATTRIBUTES_TO_RETRIEVE,
-    restrictSearchableAttributes: RESTAURANT_SEARCH_ATTRIBUTES,
     facets: ['food_type', 'dining_style', 'payment_options'],
     maxValuesPerFacet: 1000,
+  }
+  if (!useAllSearchableAttributes) {
+    searchParams.restrictSearchableAttributes =
+    RESTAURANT_SEARCH_ATTRIBUTES
+  }
+  if (useAllSearchableAttributes) {
+    searchParams.removeStopWords = ['en']
   }
 
   if (facetFilters.length > 0) searchParams.facetFilters = facetFilters
@@ -153,13 +165,19 @@ export function buildSearchRequest(state, { omitGeo = false } = {}) {
 
 export function buildMapSearchRequest(
   state,
-  { omitGeo = false } = {},
+  {
+    omitGeo = false,
+    useAllSearchableAttributes = false,
+  } = {},
 ) {
   const {
     facets,
     maxValuesPerFacet,
     ...searchParams
-  } = buildSearchRequest(state, { omitGeo }) //reuse this so map inherits all logic not creating a second filtering system
+  } = buildSearchRequest(state, {
+  omitGeo,
+  useAllSearchableAttributes,
+  })   //reuse this so map inherits all logic not creating a second filtering system
 
   return {
     ...searchParams,

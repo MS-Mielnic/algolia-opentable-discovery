@@ -113,7 +113,7 @@ async function runCase({
         'state',
         'stars_count',
         'reviews_count',
-        'price_range',
+        'starting_price_range',
       ],
     },
   });
@@ -133,7 +133,7 @@ async function runCase({
       `${hit.city}, ${hit.state} | ` +
       `${hit.stars_count} stars | ` +
       `${hit.reviews_count} reviews | ` +
-      `${hit.price_range}`
+      `${hit.starting_price_range}`
     );
   }
 }

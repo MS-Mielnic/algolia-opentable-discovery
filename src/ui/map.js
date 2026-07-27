@@ -103,7 +103,8 @@ function renderMarkers(hits) {
     const marker = L.circleMarker([lat, lng], {
       radius: 6,
       weight: 1,
-      fillOpacity: 0.75,
+      fillOpacity: 0.8,
+      className: 'restaurant-map-marker',
     })
 
     marker.bindTooltip(

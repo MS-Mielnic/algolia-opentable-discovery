@@ -15,8 +15,6 @@ function icon(name) {
       '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle>',
     sliders:
       '<path d="M4 7h10"></path><path d="M18 7h2"></path><circle cx="16" cy="7" r="2"></circle><path d="M4 17h2"></path><path d="M10 17h10"></path><circle cx="8" cy="17" r="2"></circle>',
-    compare:
-      '<path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3"></path><path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"></path><path d="M12 2v20"></path>',
     chevron:
       '<path d="m9 18 6-6-6-6"></path>',
     close:
@@ -280,26 +278,20 @@ export function renderAppShell() {
         <a class="brand" href="/" aria-label="Restaurant discovery home">
           <span class="brand-mark" aria-hidden="true">${icon('compass')}</span>
           <span>
-            <strong>TableScout</strong>
+            <strong>OpenTable</strong>
             <small>Discovery prototype</small>
           </span>
         </a>
-
-        <button class="compare-header-button" type="button" disabled>
-          ${icon('compare')}
-          <span>Compare</span>
-          <span class="count-badge">0</span>
-        </button>
       </header>
 
       <main>
         <section class="hero-section" aria-labelledby="page-title">
           <div class="hero-copy">
-            <p class="eyebrow">DISCOVER · REFINE · COMPARE · BOOK</p>
-            <h1 id="page-title">Find your next table.</h1>
+            <p class="eyebrow">DISCOVER · REFINE · EXPLORE · BOOK</p>
+            <h1 id="page-title">Find your next bite.</h1>
             <p>
               Search for a restaurant you know, or explore somewhere new by
-              cuisine, location, rating, and dining style.
+              cuisine, location, rating, price and what matters to you.
             </p>
           </div>
 
@@ -416,10 +408,6 @@ export function renderAppShell() {
             >
               ${icon('sliders')}
               Filters
-            </button>
-            <button class="mobile-compare-button" type="button" disabled>
-              ${icon('compare')}
-              Compare 0
             </button>
           </div>
 
@@ -553,14 +541,6 @@ export function renderAppShell() {
           </button>
         </div>
       </aside>
-
-      <section class="compare-tray" hidden aria-label="Restaurant comparison">
-        <div>
-          <strong>Compare restaurants</strong>
-          <span>Select up to three restaurants.</span>
-        </div>
-        <button class="primary-button" type="button">Compare now</button>
-      </section>
     </div>
   `
 }

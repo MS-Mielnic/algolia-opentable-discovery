@@ -158,18 +158,6 @@ svg {
   font-size: 12px;
 }
 
-.compare-header-button,
-.mobile-compare-button {
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 13px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-}
-
 .count-badge {
   min-width: 22px;
   min-height: 22px;
@@ -533,8 +521,8 @@ svg {
 
 .results-layout {
   display: grid;
-  grid-template-columns: 252px minmax(0, 1fr);
-  gap: 38px;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 26px;
   align-items: start;
 }
 
@@ -935,35 +923,6 @@ svg {
   font-weight: 750;
 }
 
-.compare-tray {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  left: 24px;
-  z-index: 35;
-  width: min(calc(100% - 48px), 760px);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 15px 16px 15px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 18px;
-  color: white;
-  background: var(--surface-strong);
-  box-shadow: 0 18px 50px rgba(31, 42, 42, 0.28);
-}
-
-.compare-tray > div {
-  display: grid;
-  gap: 3px;
-}
-
-.compare-tray span {
-  color: #c9d0cf;
-  font-size: 13px;
-}
 
 @media (max-width: 1100px) {
   .results-grid {
@@ -1055,19 +1014,18 @@ svg {
     gap: 12px;
   }
 
-  .mobile-filter-button,
-  .mobile-compare-button {
-    min-height: 42px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 0 14px;
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    background: var(--surface);
-    font-weight: 700;
-  }
+  .mobile-filter-button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  font-weight: 700;
+}
 
   .mobile-filter-button {
     flex: 1;
@@ -1078,8 +1036,24 @@ svg {
   }
 
   .results-header {
-    align-items: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
   }
+
+  .results-header-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .results-view-toggle {
+    width: 100%;
+  }
+
+  .results-context-label {
+    width: 100%;
+    justify-content: center;
+}
 
   .results-context-button {
     display: none;
@@ -1087,11 +1061,7 @@ svg {
 }
 
 @media (max-width: 560px) {
-  .compare-header-button span:not(.count-badge) {
-    display: none;
-  }
-
-  .hero-copy h1 {
+    .hero-copy h1 {
     font-size: 45px;
   }
 
@@ -1121,17 +1091,6 @@ svg {
   .results-header {
     min-height: 0;
   }
-
-  .compare-tray {
-    right: 12px;
-    bottom: 12px;
-    left: 12px;
-    width: auto;
-  }
-
-  .compare-tray span {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1146,9 +1105,6 @@ svg {
 }
 
 /* Step 2: real Algolia result cards and search states */
-.compare-tray[hidden] {
-  display: none;
-}
 
 .results-grid-loading {
   opacity: 0.72;
@@ -1428,9 +1384,6 @@ svg {
   background: var(--accent-soft);
 }
 
-.compare-tray[hidden] {
-  display: none;
-}
 
 @media (max-width: 820px) {
   .search-support-row {
@@ -1719,6 +1672,22 @@ svg {
   background: var(--accent-soft);
 }
 
+@media (min-width: 821px) {
+  .results-header-actions {
+    min-width: 220px;
+    gap: 6px;
+  }
+
+  .results-view-toggle {
+    width: 100%;
+  }
+
+  .results-context-label {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .results-map {
   width: 100%;
   height: 560px;
@@ -1728,6 +1697,16 @@ svg {
   background: var(--surface);
   overflow: hidden;
 }
+.restaurant-map-marker {
+  stroke: var(--accent-dark);
+  fill: var(--accent);
+}
+
+.restaurant-map-marker:hover {
+  stroke-width: 2;
+  fill-opacity: 0.95;
+}
+
 .results-grid[hidden],
 .results-map[hidden] {
   display: none;

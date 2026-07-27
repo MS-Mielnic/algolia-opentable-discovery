@@ -33,6 +33,7 @@ export function createSearchController(store) {
         status: 'loading',
         error: null,
         usedGeoFallback: false,
+        usedTextFallback: false,
       },
     }))
 
@@ -46,14 +47,36 @@ export function createSearchController(store) {
         searchParams: buildSearchRequest(state),
       })
 
-      const usedGeoFallback = false
-
       if (sequence !== requestSequence) return
+
+      let usedTextFallback = false
+
+      if (
+        state.query.trim().length > 0 &&
+        (response.nbHits ?? 0) === 0
+      ) {
+        const fallbackResponse = await client.searchSingleIndex({
+          indexName,
+          searchParams: buildSearchRequest(state, {
+            useAllSearchableAttributes: true,
+          }),
+        })
+
+        if (sequence !== requestSequence) return
+
+        if ((fallbackResponse.nbHits ?? 0) > 0) {
+          response = fallbackResponse
+          usedTextFallback = true
+        }
+      }
+
+      const usedGeoFallback = false
 
       const mapResponse = await client.searchSingleIndex({
         indexName,
         searchParams: buildMapSearchRequest(state, {
           omitGeo: usedGeoFallback,
+          useAllSearchableAttributes: usedTextFallback,
         }),
       })
       //test
@@ -79,9 +102,11 @@ export function createSearchController(store) {
           processingTimeMS: response.processingTimeMS ?? 0,
           error: null,
           usedGeoFallback,
+          usedTextFallback,
         },
       }))
     } catch (error) {
+      //console.error('Search execution failed:', error)
       if (sequence !== requestSequence) return
 
       store.setState((state) => ({
