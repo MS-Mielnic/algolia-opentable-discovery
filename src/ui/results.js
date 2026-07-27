@@ -5,6 +5,7 @@ import {
   formatLocation,
   formatRating,
 } from '../utils/formatting.js'
+import { renderRestaurantMap } from './map.js'
 
 function renderSkeletonCards(count = 6) {
   return Array.from({ length: count }, () => `
@@ -178,6 +179,82 @@ function buildResultsSummary(state) {
   return `${count} restaurants to explore.`
 }
 
+function buildEmptyState(state) {
+  const query = state.query.trim()
+  const { filters, location, discoveryMode } = state
+
+  const singleCuisine =
+    filters.cuisines.length === 1
+      ? filters.cuisines[0]
+      : null
+
+  if (
+    discoveryMode === 'hidden-gems' &&
+    location.mode === 'near-me'
+  ) {
+    return {
+      title: 'No hidden gems nearby',
+      summary: singleCuisine
+        ? `We couldn’t find ${singleCuisine} hidden gems within ${location.radiusMiles} miles.`
+        : `We couldn’t find hidden gems within ${location.radiusMiles} miles.`,
+      message: singleCuisine
+        ? `Try all ${singleCuisine} restaurants nearby or explore another cuisine.`
+        : 'Try all restaurants nearby or explore another cuisine.',
+    }
+  }
+
+  if (
+    discoveryMode === 'hidden-gems' &&
+    location.mode === 'selected'
+  ) {
+    return {
+      title: `No hidden gems in ${location.label}`,
+      summary: singleCuisine
+        ? `We couldn’t find ${singleCuisine} hidden gems matching these preferences in ${location.label}.`
+        : `We couldn’t find hidden gems matching these preferences in ${location.label}.`,
+      message: singleCuisine
+        ? `Try all ${singleCuisine} restaurants in ${location.label} or adjust another preference.`
+        : `Try all restaurants in ${location.label} or adjust another preference.`,
+    }
+  }
+
+  if (location.mode === 'near-me') {
+    return {
+      title: 'Nothing matched nearby',
+      summary: `We couldn’t find restaurants matching these preferences within ${location.radiusMiles} miles.`,
+      message:
+        'Try a different cuisine, price, rating, dining style, or payment option.',
+    }
+  }
+
+  if (query) {
+    return {
+      title: `We couldn’t find “${query}”`,
+      summary:
+        'Check the spelling or try another restaurant or cuisine.',
+      message:
+        'You can also change the location or adjust your preferences.',
+    }
+  }
+
+  if (location.mode === 'selected') {
+    return {
+      title: `No restaurants matched in ${location.label}`,
+      summary: `We couldn’t find restaurants matching these preferences in ${location.label}.`,
+      message:
+        'Try changing the cuisine, price, rating, dining style, or payment option.',
+    }
+  }
+
+  return {
+    title: 'No restaurants matched these preferences',
+    summary:
+      'We couldn’t find restaurants matching everything you selected.',
+    message:
+      'Try changing the cuisine, price, rating, dining style, or payment option.',
+  }
+}
+
 export function renderSearchState(state) {
   const grid = document.querySelector('#results-grid')
   const map = document.querySelector('#results-map')
@@ -193,6 +270,10 @@ export function renderSearchState(state) {
 
   grid.hidden = mapActive
   map.hidden = !mapActive
+  
+  if (mapActive) {
+  renderRestaurantMap(state)
+  }
 
   viewButtons.forEach((button) => {
     button.setAttribute(
@@ -225,28 +306,18 @@ export function renderSearchState(state) {
   }
 
   if (state.search.status === 'success' && state.search.hits.length === 0) {
-    resultsTitle.textContent = 'No matching restaurants'
+    const emptyState = buildEmptyState(state)
 
-    if (state.location.mode === 'selected') {
-      summary.textContent =
-        `No matches in ${state.location.label}. Try clearing a refinement or changing the location.`
-    } else {
-      summary.textContent =
-        'Try clearing a refinement or broadening the restaurant search.'
-    }
+    resultsTitle.textContent = emptyState.title
+    summary.textContent = emptyState.summary
 
     grid.innerHTML = `
       <div class="results-message">
-        <h3>No results yet</h3>
-        <p>
-          ${
-            state.location.mode === 'selected'
-              ? `Keep the location or choose a different starting point.`
-              : `Clear a refinement or try a different restaurant or cuisine.`
-          }
-        </p>
+        <h3>${escapeHtml(emptyState.title)}</h3>
+        <p>${escapeHtml(emptyState.message)}</p>
       </div>
     `
+
     return
   }
 
@@ -254,7 +325,24 @@ export function renderSearchState(state) {
     resultsTitle.textContent = state.query.trim()
       ? 'Search results'
       : 'Restaurants to explore'
-    summary.textContent = buildResultsSummary(state)
-    grid.innerHTML = state.search.hits.map(renderRestaurantCard).join('')
+
+    const baseSummary = buildResultsSummary(state)
+
+    const mapCoverageMessage =
+      mapActive &&
+      state.search.nbHits > state.search.mapHits.length
+        ? ` Map showing ${formatInteger(
+            state.search.mapHits.length,
+          )} of ${formatInteger(
+            state.search.nbHits,
+          )} matching restaurants.`
+        : ''
+
+    summary.textContent =
+      `${baseSummary}${mapCoverageMessage}`
+
+    grid.innerHTML = state.search.hits
+      .map(renderRestaurantCard)
+      .join('')
   }
 }

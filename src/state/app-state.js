@@ -35,6 +35,7 @@ const initialState = {
   search: {
     status: 'idle',
     hits: [],
+    mapHits:[],
     nbHits: 0,
     processingTimeMS: 0,
     error: null,

@@ -29,6 +29,21 @@ const RESTAURANT_SEARCH_ATTRIBUTES = [
   'food_type',
 ]
 
+const MAP_ATTRIBUTES_TO_RETRIEVE = [
+  'objectID',
+  'name',
+  'food_type',
+  'city',
+  'state',
+  'neighborhood',
+  'dining_style',
+  'price_tier_label',
+  'stars_count',
+  'reviews_count',
+  '_geoloc',
+  'reserve_url',
+]
+
 const METERS_PER_MILE = 1609.344
 
 function buildFacetFilters(filters, location) {
@@ -134,4 +149,21 @@ export function buildSearchRequest(state, { omitGeo = false } = {}) {
   }
 
   return searchParams
+}
+
+export function buildMapSearchRequest(
+  state,
+  { omitGeo = false } = {},
+) {
+  const {
+    facets,
+    maxValuesPerFacet,
+    ...searchParams
+  } = buildSearchRequest(state, { omitGeo }) //reuse this so map inherits all logic not creating a second filtering system
+
+  return {
+    ...searchParams,
+    hitsPerPage: 1000,
+    attributesToRetrieve: MAP_ATTRIBUTES_TO_RETRIEVE,
+  }
 }
