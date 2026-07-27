@@ -10,8 +10,7 @@ The prototype is designed around two user journeys from the prospect discovery n
 The experience follows a simple journey:
 
 **DISCOVER → REFINE → EXPLORE → BOOK**
-
-> Live demo: **to be added after deployment**
+> Deployment: https://algolia-opentable-deployment-ifwxs2nrq-msm-se-test.vercel.app/
 > Repository: https://github.com/MS-Mielnic/algolia-opentable-discovery
 
 For the deeper data analysis, relevance experiments, Algolia-setting rationale, trade-offs, and validation evidence, see [`docs/project-summary.md`](docs/project-summary.md).
@@ -143,6 +142,19 @@ restaurants_info.csv ──┘
 | Data processing | Node.js | Join, cleanup, enrichment, validation, and indexing scripts |
 
 ---
+## Deployment
+
+The production demo is deployed on Vercel:
+
+**Live demo:** https://YOUR-VERCEL-URL.vercel.app
+
+The deployed Vite application uses only the browser-safe Algolia configuration:
+
+- `VITE_ALGOLIA_APP_ID`
+- `VITE_ALGOLIA_SEARCH_API_KEY`
+- `VITE_ALGOLIA_INDEX_NAME`
+
+The Algolia write API key is used only by local administrative scripts and is not exposed to the deployed client.
 
 # Quick start
 

@@ -2118,3 +2118,51 @@ Restaurant identity and business ranking are configured globally where they shou
 Near Me, branch fallback, and stop-word removal are contextual because user intent determines when they are appropriate.
 
 The result is a prototype that supports both prospect personas without forcing known-item search and open-ended discovery into the same relevance behavior, also demonstrates Algolia support to business value.
+
+# 43. Deployment
+
+### Public application deployment — Vercel
+
+The final prototype is deployed as a production Vite application on Vercel and was smoke-tested after deployment.
+
+Deployment flow:
+
+Git repository
+      ↓
+Vercel
+      ↓
+npm install
+      ↓
+npm run build
+      ↓
+dist/
+      ↓
+Public HTTPS application
+
+The deployed browser application receives only:
+
+- `VITE_ALGOLIA_APP_ID`
+- `VITE_ALGOLIA_SEARCH_API_KEY`
+- `VITE_ALGOLIA_INDEX_NAME`
+
+The Algolia write API key is not deployed.
+
+Indexing records and changing Algolia settings remain administrative operations performed through the local Node.js scripts using the write credential.
+
+This keeps the public application limited to search access while preserving write access for controlled setup and maintenance operations.
+
+### Production validation
+
+After deployment, the public application was retested for:
+
+- known-item search;
+- typo and branch-query recovery;
+- cuisine and structured refinements;
+- Hidden Gems;
+- Near Me;
+- List and Map behavior;
+- booking links;
+- responsive/mobile behavior.
+
+The deployed application produced the same expected behavior as the locally validated production build.
+https://algolia-opentable-deployment-ifwxs2nrq-msm-se-test.vercel.app/
