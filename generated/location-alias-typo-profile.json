@@ -1,0 +1,417 @@
+{
+  "generatedAt": "2026-07-26T01:52:11.176Z",
+  "source": "/Users/mariamielniczuk/Documents/algolia-opentable-discovery/generated/restaurants_cleaned.json",
+  "baseline": {
+    "records": 5000,
+    "uniqueCityStateEntities": 936,
+    "states": 35,
+    "candidatePairs": 4,
+    "highPriorityCandidates": 0,
+    "mediumPriorityCandidates": 0,
+    "reviewOnlyCandidates": 4,
+    "candidatesByRelationship": [
+      {
+        "value": "one-edit-neighbor",
+        "count": 4
+      }
+    ]
+  },
+  "interpretationNotes": [
+    "The profiler compares city labels only within the same state.",
+    "The script does not modify any records.",
+    "ZIP+4 values are reduced to ZIP5 only for comparison.",
+    "Common geographic abbreviations such as Saint/St., Fort/Ft., and Mount/Mt. are normalized only to generate review candidates.",
+    "Spacing-equivalent candidates include patterns such as Winter Park versus Winterpark.",
+    "One-edit and two-edit candidates are intended to expose probable spelling errors such as Southold versus Southhold or Portland versus Portlando.",
+    "ZIP overlap, area agreement, and geographic proximity are supporting evidence only.",
+    "reviewPriority must not be used as an automatic canonicalization rule.",
+    "The profiler deliberately does not choose which member of a pair should become the canonical city value."
+  ],
+  "candidates": [
+    {
+      "state": "NY",
+      "reviewPriority": "review",
+      "relationship": {
+        "type": "one-edit-neighbor",
+        "editDistance": 1,
+        "similarity": 0.875,
+        "leftNormalized": "sayville",
+        "rightNormalized": "bayville",
+        "leftAliasSignature": "sayville",
+        "rightAliasSignature": "bayville"
+      },
+      "left": {
+        "city": "Sayville",
+        "records": 2,
+        "zip5Counts": [
+          {
+            "value": "11782",
+            "count": 2
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "69457",
+            "name": "La Tavola - Sayville",
+            "address": "183 W. Main Street",
+            "postal_code": "11782",
+            "postal_code_5": "11782",
+            "city": "Sayville",
+            "neighborhood": "Sayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 40.734488,
+              "lng": -73.085927
+            }
+          },
+          {
+            "objectID": "85768",
+            "name": "Butera's Restaurant of Sayville",
+            "address": "100 South Main Street",
+            "postal_code": "11782",
+            "postal_code_5": "11782",
+            "city": "Sayville",
+            "neighborhood": "Sayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 40.736156,
+              "lng": -73.080895
+            }
+          }
+        ]
+      },
+      "right": {
+        "city": "Bayville",
+        "records": 1,
+        "zip5Counts": [
+          {
+            "value": "11709",
+            "count": 1
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "86689",
+            "name": "Ocean @ The Crescent Beach Club",
+            "address": "333 Bayville Ave",
+            "postal_code": "11709",
+            "postal_code_5": "11709",
+            "city": "Bayville",
+            "neighborhood": "Bayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 40.907692,
+              "lng": -73.544517
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "overlappingZip5": [],
+        "hasExactZipOverlap": false,
+        "leftRecordZipOverlapShare": 0,
+        "rightRecordZipOverlapShare": 0,
+        "centroidDistanceMiles": 26.89,
+        "overlappingAreas": [
+          "New York / Tri-State Area"
+        ],
+        "hasAreaOverlap": true
+      }
+    },
+    {
+      "state": "NJ",
+      "reviewPriority": "review",
+      "relationship": {
+        "type": "one-edit-neighbor",
+        "editDistance": 1,
+        "similarity": 0.8571,
+        "leftNormalized": "clifton",
+        "rightNormalized": "clinton",
+        "leftAliasSignature": "clifton",
+        "rightAliasSignature": "clinton"
+      },
+      "left": {
+        "city": "Clifton",
+        "records": 2,
+        "zip5Counts": [
+          {
+            "value": "07011",
+            "count": 1
+          },
+          {
+            "value": "07012",
+            "count": 1
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "112954",
+            "name": "Spuntino Wine Bar and Italian Tapas",
+            "address": "70 Kingsland Rd",
+            "postal_code": "07011",
+            "postal_code_5": "07011",
+            "city": "Clifton",
+            "neighborhood": "Clifton",
+            "area": "New York / Tri-State Area",
+            "state": "NJ",
+            "_geoloc": {
+              "lat": 40.824821,
+              "lng": -74.138029
+            }
+          },
+          {
+            "objectID": "124615",
+            "name": "Buco Ristorante",
+            "address": "953 Allwood Rd",
+            "postal_code": "07012",
+            "postal_code_5": "07012",
+            "city": "Clifton",
+            "neighborhood": "Clifton",
+            "area": "New York / Tri-State Area",
+            "state": "NJ",
+            "_geoloc": {
+              "lat": 40.85314,
+              "lng": -74.174029
+            }
+          }
+        ]
+      },
+      "right": {
+        "city": "Clinton",
+        "records": 1,
+        "zip5Counts": [
+          {
+            "value": "08809",
+            "count": 1
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "65122",
+            "name": "The Clinton House",
+            "address": "2 West Main Street",
+            "postal_code": "08809",
+            "postal_code_5": "08809",
+            "city": "Clinton",
+            "neighborhood": "Clinton",
+            "area": "New York / Tri-State Area",
+            "state": "NJ",
+            "_geoloc": {
+              "lat": 40.635103,
+              "lng": -74.912559
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "overlappingZip5": [],
+        "hasExactZipOverlap": false,
+        "leftRecordZipOverlapShare": 0,
+        "rightRecordZipOverlapShare": 0,
+        "centroidDistanceMiles": 42.04,
+        "overlappingAreas": [
+          "New York / Tri-State Area"
+        ],
+        "hasAreaOverlap": true
+      }
+    },
+    {
+      "state": "NY",
+      "reviewPriority": "review",
+      "relationship": {
+        "type": "one-edit-neighbor",
+        "editDistance": 1,
+        "similarity": 0.875,
+        "leftNormalized": "mayville",
+        "rightNormalized": "bayville",
+        "leftAliasSignature": "mayville",
+        "rightAliasSignature": "bayville"
+      },
+      "left": {
+        "city": "Mayville",
+        "records": 1,
+        "zip5Counts": [
+          {
+            "value": "14757",
+            "count": 1
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "38860",
+            "name": "Webb's Captain's Table",
+            "address": "115 West Lake Road",
+            "postal_code": "14757",
+            "postal_code_5": "14757",
+            "city": "Mayville",
+            "neighborhood": "Mayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 42.237496,
+              "lng": -79.494101
+            }
+          }
+        ]
+      },
+      "right": {
+        "city": "Bayville",
+        "records": 1,
+        "zip5Counts": [
+          {
+            "value": "11709",
+            "count": 1
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "86689",
+            "name": "Ocean @ The Crescent Beach Club",
+            "address": "333 Bayville Ave",
+            "postal_code": "11709",
+            "postal_code_5": "11709",
+            "city": "Bayville",
+            "neighborhood": "Bayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 40.907692,
+              "lng": -73.544517
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "overlappingZip5": [],
+        "hasExactZipOverlap": false,
+        "leftRecordZipOverlapShare": 0,
+        "rightRecordZipOverlapShare": 0,
+        "centroidDistanceMiles": 320.88,
+        "overlappingAreas": [
+          "New York / Tri-State Area"
+        ],
+        "hasAreaOverlap": true
+      }
+    },
+    {
+      "state": "NY",
+      "reviewPriority": "review",
+      "relationship": {
+        "type": "one-edit-neighbor",
+        "editDistance": 1,
+        "similarity": 0.875,
+        "leftNormalized": "mayville",
+        "rightNormalized": "sayville",
+        "leftAliasSignature": "mayville",
+        "rightAliasSignature": "sayville"
+      },
+      "left": {
+        "city": "Mayville",
+        "records": 1,
+        "zip5Counts": [
+          {
+            "value": "14757",
+            "count": 1
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "38860",
+            "name": "Webb's Captain's Table",
+            "address": "115 West Lake Road",
+            "postal_code": "14757",
+            "postal_code_5": "14757",
+            "city": "Mayville",
+            "neighborhood": "Mayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 42.237496,
+              "lng": -79.494101
+            }
+          }
+        ]
+      },
+      "right": {
+        "city": "Sayville",
+        "records": 2,
+        "zip5Counts": [
+          {
+            "value": "11782",
+            "count": 2
+          }
+        ],
+        "areas": [
+          "New York / Tri-State Area"
+        ],
+        "examples": [
+          {
+            "objectID": "69457",
+            "name": "La Tavola - Sayville",
+            "address": "183 W. Main Street",
+            "postal_code": "11782",
+            "postal_code_5": "11782",
+            "city": "Sayville",
+            "neighborhood": "Sayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 40.734488,
+              "lng": -73.085927
+            }
+          },
+          {
+            "objectID": "85768",
+            "name": "Butera's Restaurant of Sayville",
+            "address": "100 South Main Street",
+            "postal_code": "11782",
+            "postal_code_5": "11782",
+            "city": "Sayville",
+            "neighborhood": "Sayville",
+            "area": "New York / Tri-State Area",
+            "state": "NY",
+            "_geoloc": {
+              "lat": 40.736156,
+              "lng": -73.080895
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "overlappingZip5": [],
+        "hasExactZipOverlap": false,
+        "leftRecordZipOverlapShare": 0,
+        "rightRecordZipOverlapShare": 0,
+        "centroidDistanceMiles": 347.56,
+        "overlappingAreas": [
+          "New York / Tri-State Area"
+        ],
+        "hasAreaOverlap": true
+      }
+    }
+  ]
+}
